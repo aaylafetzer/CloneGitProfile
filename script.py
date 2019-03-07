@@ -10,7 +10,7 @@ if (len(sys.argv) == 1): #Test if a profile name is given in the system argument
 else: #Nothing was provided
     GIT = sys.argv[1]
 
-repos = requests.get("http://api.github.com/users/" + GIT + "/repos").json()
+repos = requests.get('/'.join(["http:/","api.github.com","users",GIT,"repos"])).json()
 os.system("cd /d ")
 for i in repos:
     threading.Thread(target=Clone, args=(GIT, i["name"])).start()
