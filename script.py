@@ -1,4 +1,4 @@
-import os, sys, requests, json
+import os, sys, requests, json, threading
 
 GIT = None
 
@@ -16,4 +16,4 @@ else: #Nothing was provided
 repos = ParseJson(requests.get("http://api.github.com/users/" + GIT + "/repos"))
 os.system("cd /d ")
 for i in repos:
-    Clone(GIT, i["name"])
+    threading.Thread(target=Clone, args=(GIT, i["name"])).start()
