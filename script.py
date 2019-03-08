@@ -11,7 +11,7 @@ def Clone(git, repo): #Run git clone command
 if (PLATFORM == "Linux" or PLATFORM == "Darwin"): #The script is running on Linux or MacOS
     PATH = "~/Documents/Code/"
 elif (PLATFORM == "Windows"): #The script is running on garbage
-    PATH = "%USERPROFILE%/Documents/Code"
+    PATH = "%USERPROFILE%\\Documents\\Code"
 else: #The script can't identify the host OS
     input("Unable to identify operating system")
     exit()
