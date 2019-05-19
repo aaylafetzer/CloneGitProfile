@@ -5,7 +5,7 @@ PATH = None
 PLATFORM = platform.system()
 
 def Clone(git, repo): #Run git clone command
-    print(f"git clone https://github.com/{git}/{repo}.git {PATH}/{repo}") #Use the system command line to run git clone
+    os.system(f"git clone https://github.com/{git}/{repo}.git {PATH}/{repo}") #Use the system command line to run git clone
 
 #Detect what platform the script is running on
 if (PLATFORM == "Linux" or PLATFORM == "Darwin"): #The script is running on Linux or MacOS
