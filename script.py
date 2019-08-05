@@ -34,7 +34,6 @@ else:
 
 # Get a list of provided profiles
 profiles = [argument for argument in sys.argv[1::] if argument[0] != "-"]
-print(profiles)
 
 if len(profiles) == 0:
     profiles.append(input("GitHub Username: "))
