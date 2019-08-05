@@ -32,13 +32,9 @@ else:
     # 99.99% Chance this is a Linux distro and if it's not you shouldn't expect this to work
     PATH = "${HOME}/Documents/Code/"
 
-profiles = []
-# Get a list of profiles provided
-for arg in sys.argv[1::]:
-    if arg[0] == '-':  # Argument is a flag
-        continue
-    else:
-        profiles.append(arg)
+# Get a list of provided profiles
+profiles = [argument for argument in sys.argv[1::] if argument[0] != "-"]
+print(profiles)
 
 if len(profiles) == 0:
     profiles.append(input("GitHub Username: "))
