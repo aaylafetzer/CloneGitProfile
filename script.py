@@ -9,25 +9,46 @@ PATH = None
 PLATFORM = platform.system()
 
 
-def clone(git, repo):  # Run git clone command
-    os.system(f"git clone https://github.com/{git}/{repo}.git \"{PATH}/{repo}\"")
+def clone(profile_name, repository_name, profile_in_path=False):  # Run git clone command
+    """
+    Clone a github repository
+    :param profile_name: GitHub username
+    :param repository_name: GitHub repository url
+    :param profile_in_path: Whether to include the profile as a subfolder
+    :return:
+    """
+    if profile_in_path:
+        command = f"git clone https://github.com/{profile_name}/{repository_name}.git \"{PATH}/{profile_name}/" \
+                  f"{repository_name}\""
+    else:
+        command = f"git clone https://github.com/{profile_name}/{repository_name}.git \"{PATH}/{repository_name}\""
+    os.system(command)
 
 
-# Detect what platform the script is running on
-if PLATFORM == "Linux" or PLATFORM == "Darwin":  # The script is running on Linux or MacOS
-    PATH = "~/Documents/Code/"
-elif PLATFORM == "Windows":  # The script is running on garbage
+if PLATFORM == "Windows":
+    # Detect what platform the script is running on
     PATH = "%USERPROFILE%\\Documents\\Code"
-else:  # The script can't identify the host OS
-    input("Unable to identify operating system")
-    exit()
+else:
+    # 99.99% Chance this is a Linux distro and if it's not you shouldn't expect this to work
+    PATH = "${HOME}/Documents/Code/"
 
-if len(sys.argv) == 1:  # Test if a profile name is given in the system arguments
-    GIT = input("Github username: ")  # Nothing was provided
-else:  # A name was provided
-    GIT = sys.argv[1]
+profiles = []
+# Get a list of profiles provided
+for arg in sys.argv[1::]:
+    if arg[0] == '-':  # Argument is a flag
+        continue
+    else:
+        profiles.append(arg)
+
+if len(profiles) == 0:
+    profiles.append(input("GitHub Username: "))
+
 # Query the GitHub API for a list of the user's repositories and store the response as JSON
-repos = requests.get('/'.join(["http:/", "api.github.com", "users", GIT, "repos"])).json()
-for i in repos:
-    # Split executions of the Clone function into multiple threads to clone larger profiles faster
-    threading.Thread(target=clone, args=(GIT, i["name"])).start()
+for profile in profiles:
+    repos = requests.get(f"http://api.github.com/users/{profile}/repos").json()
+    for repo in repos:
+        # Split executions of the Clone function into multiple threads to clone larger profiles faster
+        if '-t' in sys.argv:
+            threading.Thread(target=clone, args=(profile, repo["name"], len(profiles) > 1)).start()
+        else:
+            clone(profile, repo["name"], len(profiles) > 1)
