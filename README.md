@@ -14,6 +14,10 @@ If you have a larger profile, it may be beneficial to enable threading with the 
 ## Notes
 This script requires git. On Windows this can be downloaded from [git-scm.com](https://git-scm.com/download/win). You can install git on Linux distributions with:
 
-* Debian: ``apt install git``
-* Arch: ``pacman -Sy git``
-* Fedora: ``yum install git-core``
+* Debian: apt install git
+* Arch Linux: pacman -Sy git
+* Gentoo Linux: emerge dev-vcs/git
+* Slackware: slackpkg install git
+* Fedora: yum install git-core
+* openSUSE: zypper install git
+* FreeBSD: pkg install git
