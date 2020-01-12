@@ -16,4 +16,8 @@ This script requires git. On Windows this can be downloaded from [git-scm.com](h
 
 * Debian: ``apt install git``
 * Arch: ``pacman -Sy git``
+* Gentoo: ``emerge dev-vcs/git``
+* Slackware: ``slackpkg install git``
 * Fedora: ``yum install git-core``
+* openSUSE: ``zypper install git``
+* FreeBSD: ``pkg install git``
