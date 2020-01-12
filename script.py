@@ -1,6 +1,8 @@
 import requests
 import time
 import platform
+import os
+import subprocess
 
 GIT = None
 PATH = None
