@@ -12,7 +12,7 @@ if PLATFORM == "Windows":
     PATH = "%USERPROFILE%\\Documents\\Code\\"
 else:
     # This should work if it's most things that aren't Windows
-    PATH = "${HOME}/Documents/Code/Testing/"
+    PATH = "${HOME}/Documents/Code/"
 
 # Get gitlab profile name
 user = input("GitLab username: ")
