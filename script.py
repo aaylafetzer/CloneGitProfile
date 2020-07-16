@@ -34,7 +34,7 @@ elif args.github:
         if not request:
             break
         else:
-            for repo in [repo for repo in request]:
+            for repo in request:
                 repositories.append({"url": repo["clone_url"], "name": repo["name"]})
             page += 1
 
