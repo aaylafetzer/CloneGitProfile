@@ -1,41 +1,45 @@
+import argparse
 import requests
-import time
-import platform
-import os
-import subprocess
+from git import Repo
 
-GIT = None
-PATH = None
-PLATFORM = platform.system()
+# Handle arguments with argparse
+parser = argparse.ArgumentParser(description="Clone a GitHub or GitLab profile")
+group = parser.add_mutually_exclusive_group(required=True)
+group.add_argument("--gitlab", action="store_true", help="clone a GitLab Profile")
+group.add_argument("--github", action="store_true", help="clone a GitHub Profile")
+parser.add_argument("username", help="username of the profile to clone")
+parser.add_argument("path", help="folder to clone repositories into")
+args = parser.parse_args()
 
-if PLATFORM == "Windows":
-    # If the program is running on Windows
-    PATH = "%USERPROFILE%\\Documents\\Code\\"
-else:
-    # This should work if it's most things that aren't Windows
-    PATH = "${HOME}/Documents/Code/"
+repositories = []
 
-# Get gitlab profile name
-user = input("GitLab username: ")
+if args.gitlab:
+    # Request a GitLab user's repositories
+    page = 1
+    while True:
+        request = \
+            requests.get(f"https://gitlab.com/api/v4/users/{args.username}/projects?per_page=100&page={page}").json()
+        if not request:
+            break
+        else:
+            for repo in [repo for repo in request]:
+                repositories.append({"url": repo["http_url_to_repo"], "name": repo["name"]})
+            page += 1
 
-# Query the GitHub API for a list of the user's repositories and store the response as JSON
-API_URL = f"https://gitlab.com/api/v4/users/{user}/projects"
-print("Sending query to GitLab API")
-while True:
-    try:
-        data = requests.get(url=API_URL).json()
-        break
-    except ConnectionError:
-        print("Connection Error. Retrying in 5 seconds")
-        time.sleep(5)
+elif args.github:
+    # Request a GitHub user's repositories
+    page = 1
+    while True:
+        request = requests.get(f"https://api.github.com/users/{args.username}/repos?per_page=100&page={page}").json()
+        if not request:
+            break
+        else:
+            for repo in [repo for repo in request]:
+                repositories.append({"url": repo["clone_url"], "name": repo["name"]})
+            page += 1
 
-print(str(len(data)) + " Public projects found")
-# Print out a response
-for project in data:
-    print("Cloning " + project["name"])
-    http_url = project["http_url_to_repo"]
-    path = PATH + project["path"]
-    command = f"git clone {http_url} {path}"
-    # Using subprocess instead of os.system because os.system is deprecated
-    with open(os.devnull, 'wb') as devnull:
-        subprocess.call(command, shell=True, stdout=devnull, stderr=devnull)
+# Clone repositories
+print(f"Found {len(repositories)} repositories to clone")
+for repo in repositories:
+    print("Cloning Project: " + repo["name"])
+    Repo.clone_from(repo["url"], args.path + "/" + repo["name"])

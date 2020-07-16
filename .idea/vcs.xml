@@ -2,5 +2,35 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/21stCenturyFinalProject" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/AutoClicker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/BatchFirewall" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/BigSearch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/CS-1050-001" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/CloneGitProfile" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/DenverManual" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/Docker_Configs" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/E2EMail" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/Ender-Advancement" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/FEC_Receipts" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/GTAPublicPrivate" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/JoinIt-Discourse Integration" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/ManjaroSetup" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/PyMacro" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/RandomMAC" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/SCMC-Website" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/Samwat.ch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/TextEngine" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/Twitter Bot Snitch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/adventofcode-2019" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/afetzer.com" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/bvanseg.github.io" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/cliutil" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/dotfiles" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/ffmpeg_batch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/newurbanistzoomers.org" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/spookyfoxinc.com" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/st" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clone/void-packages" vcs="Git" />
   </component>
 </project>
