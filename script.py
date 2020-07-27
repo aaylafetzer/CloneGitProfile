@@ -41,5 +41,8 @@ elif args.github:
 # Clone repositories
 print(f"Found {len(repositories)} repositories to clone")
 for repo in repositories:
-    print("Cloning Project: " + repo["name"])
-    Repo.clone_from(repo["url"], args.path + "/" + repo["name"])
+    try:
+        print("Cloning Project: " + repo["name"])
+        Repo.clone_from(repo["url"], args.path + "/" + repo["name"], multi_options=["--recursive"])
+    except:
+        pass
